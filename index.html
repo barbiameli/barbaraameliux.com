@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbara Ameli — UX & Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1117;
+      --navy-soft: #141b26;
+      --pink: #f2b8b8;
+      --pink-light: #fce8e8;
+      --pink-mid: #e8a5a5;
+      --cream: #faf7f4;
+      --text: #0d1117;
+      --text-muted: #6b7280;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(250, 247, 244, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(242, 184, 184, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--pink-mid); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--pink-mid); }
+
+    .nav-cta {
+      background: var(--navy) !important;
+      color: var(--cream) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 2px;
+    }
+    .nav-cta:hover { background: #1e2a3a !important; color: var(--cream) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 2rem 4rem;
+    }
+    }
+
+    .hero-bg-stripe {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--pink-light), var(--pink), var(--pink-mid));
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(5rem, 15vw, 13rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s ease forwards;
+    }
+
+    .hero-subtitle {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s ease forwards;
+    }
+
+    .hero-desc {
+      margin-top: 1.5rem;
+      max-width: 520px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s ease forwards;
+    }
+
+    .hero-cta-group {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 1s ease forwards;
+    }
+
+    .btn-primary {
+      background: var(--pink);
+      color: var(--navy);
+      padding: 0.85rem 2rem;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: #fff; }
+
+    .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      padding: 0.85rem 2rem;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.4s ease forwards;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--pink-light);
+      padding: 1.8rem 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      font-weight: 400;
+    }
+
+    /* SECTION */
+    section { padding: 6rem 3rem; }
+
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink-mid);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* PROJECTS */
+    #projects {
+      background: var(--cream);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 2px;
+    }
+
+    /* PROJECT CARD */
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 460px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 4px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    .project-card.reverse { direction: rtl; }
+    .project-card.reverse > * { direction: ltr; }
+
+    .project-visual {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 400px;
+    }
+
+    .project-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 1.5rem;
+    }
+
+    .project-visual-inner {
+      width: 75%;
+      max-width: 300px;
+    }
+
+    /* Multibuy mockup */
+    .phone-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .phone-mock {
+      width: 52px;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1.5px solid rgba(255,255,255,0.15);
+    }
+    .phone-mock-screen {
+      padding: 6px 4px;
+      background: #f8f8f8;
+    }
+    .phone-mock-img {
+      width: 100%;
+      height: 34px;
+      background: #ddd;
+      border-radius: 3px;
+      margin-bottom: 4px;
+    }
+    .phone-mock-line {
+      height: 4px;
+      background: #ccc;
+      border-radius: 2px;
+      margin: 2px 0;
+    }
+    .phone-mock-line.accent { background: #1d9e75; width: 70%; }
+    .phone-mock-line.short { width: 50%; }
+    .phone-mock-btn {
+      height: 8px;
+      background: var(--navy);
+      border-radius: 2px;
+      margin-top: 5px;
+    }
+    .phone-mock.featured {
+      width: 64px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .progress-bar-wrap {
+      background: #e8f5f0;
+      border-radius: 2px;
+      height: 5px;
+      margin: 3px 0;
+    }
+    .progress-bar-fill {
+      background: #1d9e75;
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    /* PDP mockup */
+    .pdp-mock {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .pdp-mock-top {
+      height: 130px;
+      background: linear-gradient(135deg, #e8e0d8 0%, #d5ccc3 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pdp-shirt-icon {
+      width: 50px;
+      height: 60px;
+      background: #c5bdb4;
+      border-radius: 3px 3px 0 0;
+      position: relative;
+    }
+    .pdp-shirt-icon::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 16px; height: 10px;
+      background: #b5ada4;
+      border-radius: 0 0 8px 8px;
+    }
+    .pdp-mock-body { padding: 10px 12px; }
+    .pdp-row { display: flex; gap: 4px; margin: 4px 0; }
+    .pdp-swatch {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .pdp-text-line {
+      height: 5px;
+      background: #e5e7eb;
+      border-radius: 2px;
+      flex: 1;
+    }
+    .pdp-text-line.dark { background: #374151; width: 60%; flex: none; }
+    .pdp-text-line.price { background: var(--navy); width: 40%; flex: none; height: 7px; }
+    .pdp-sizes {
+      display: flex;
+      gap: 4px;
+      margin: 8px 0;
+      flex-wrap: wrap;
+    }
+    .pdp-size-chip {
+      width: 20px; height: 18px;
+      border: 1px solid #d1d5db;
+      border-radius: 2px;
+      font-size: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: #6b7280;
+    }
+    .pdp-size-chip.selected {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: #fff;
+    }
+    .pdp-atb {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 2px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6px;
+      letter-spacing: 0.05em;
+      margin-top: 8px;
+    }
+
+    /* Design system mockup */
+    .ds-mock {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .ds-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .ds-card-label {
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 8px;
+    }
+    .ds-color-row {
+      display: flex;
+      gap: 3px;
+    }
+    .ds-color-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+    }
+    .ds-type-line {
+      margin: 3px 0;
+      color: rgba(255,255,255,0.85);
+    }
+    .ds-btn-preview {
+      background: var(--pink);
+      color: var(--navy);
+      border-radius: 2px;
+      padding: 4px 8px;
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin: 2px 0;
+    }
+    .ds-btn-preview-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 2px;
+      padding: 4px 8px;
+      font-size: 7px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin: 2px 0;
+    }
+
+    /* CookEase mockup */
+    .app-mock {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      max-width: 160px;
+      margin: 0 auto;
+    }
+    .app-mock-header {
+      background: #cc3333;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .app-mock-logo {
+      font-family: var(--serif);
+      font-size: 10px;
+      color: #fff;
+      font-weight: 700;
+    }
+    .app-mock-body { padding: 8px; }
+    .app-food-img {
+      width: 100%;
+      height: 70px;
+      background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .app-recipe-title {
+      font-size: 9px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 4px;
+    }
+    .app-meta {
+      display: flex;
+      gap: 6px;
+      font-size: 7px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+    .app-tags {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .app-tag {
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 6px;
+      padding: 2px 5px;
+      border-radius: 10px;
+    }
+    .app-nav {
+      display: flex;
+      border-top: 1px solid #f3f4f6;
+      padding: 6px 0;
+    }
+    .app-nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 5px;
+      color: #9ca3af;
+    }
+    .app-nav-item.active { color: #cc3333; }
+    .app-nav-dot {
+      width: 12px; height: 12px;
+      background: currentColor;
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+    .app-nav-item.active .app-nav-dot { opacity: 1; }
+
+    /* WineFi mockup */
+    .wine-mock {
+      background: #1a0f0a;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      padding: 0;
+    }
+    .wine-mock-hero {
+      background: linear-gradient(135deg, #2d1515 0%, #1a0f0a 100%);
+      padding: 16px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .wine-logo {
+      font-family: var(--serif);
+      font-size: 12px;
+      color: #c9a96e;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .wine-heading {
+      font-size: 11px;
+      color: #fff;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .wine-sub {
+      font-size: 7px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .wine-cta {
+      background: #c9a96e;
+      color: #1a0f0a;
+      font-size: 7px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 2px;
+      display: inline-block;
+      letter-spacing: 0.06em;
+    }
+    .wine-mock-body { padding: 12px 14px; }
+    .wine-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,169,110,0.15);
+      border-radius: 4px;
+      padding: 8px;
+      margin-bottom: 6px;
+    }
+    .wine-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .wine-card-name { font-size: 8px; color: #c9a96e; font-weight: 500; }
+    .wine-card-val { font-size: 8px; color: #fff; font-weight: 600; }
+    .wine-card-sub { font-size: 6px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    .wine-chart-bar {
+      height: 3px;
+      background: rgba(201,169,110,0.25);
+      border-radius: 2px;
+      margin-top: 5px;
+    }
+    .wine-chart-fill {
+      height: 100%;
+      background: #c9a96e;
+      border-radius: 2px;
+    }
+
+    /* Project info */
+    .project-info {
+      padding: 3rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-number {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0.35rem 0.8rem;
+      border-radius: 2px;
+      background: var(--pink-light);
+      color: #7a3838;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #4b5563;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .project-metrics {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .metric {
+      border-left: 2px solid var(--pink);
+      padding-left: 1rem;
+    }
+    .metric-val {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
+      padding-bottom: 0.1rem;
+      transition: opacity 0.2s;
+    }
+    .project-link:hover { opacity: 0.6; }
+    .project-link svg { transition: transform 0.2s; }
+    .project-link:hover svg { transform: translateX(3px); }
+
+    /* ABOUT */
+    #about {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text .section-title { color: #fff; }
+    .about-text .section-tag { color: var(--pink); }
+
+    .about-body {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      margin-top: 1.5rem;
+    }
+    .about-body p + p { margin-top: 1rem; }
+
+    .about-skills {
+      margin-top: 2.5rem;
+    }
+    .about-skills-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1rem;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-chip {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .exp-block {
+      border-left: 1px solid rgba(242, 184, 184, 0.3);
+      padding-left: 1.5rem;
+    }
+    .exp-company {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+    .exp-role {
+      font-size: 0.8rem;
+      color: var(--pink);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+    .exp-date {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.1em;
+    }
+    .exp-detail {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--pink-light);
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-inner .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .contact-desc {
+      font-size: 1rem;
+      color: #6b7280;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .contact-email {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
+      padding-bottom: 0.2rem;
+      transition: opacity 0.2s;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+    }
+    .contact-email:hover { opacity: 0.6; }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .contact-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--navy); }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      background: var(--navy);
+      padding: 6rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonials-inner { max-width: 800px; margin: 0 auto; }
+    .testimonials-qqmark {
+      font-family: var(--serif);
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(255,255,255,0.15);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .testimonial-slide { display: none; }
+    .testimonial-slide.active { display: block; }
+    .testimonial-text {
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .testimonial-author {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.45);
+      font-weight: 400;
+      text-transform: none;
+    }
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+    .testimonial-arrow {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color 0.2s;
+      font-family: var(--serif);
+    }
+    .testimonial-arrow:hover { color: #fff; }
+    .testimonial-dots { display: flex; gap: 8px; align-items: center; }
+    .testimonial-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+    }
+    .testimonial-dot.active { background: rgba(255,255,255,0.8); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      #projects { padding: 4rem 1.5rem; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-card.reverse { direction: ltr; }
+      .project-visual { min-height: 300px; }
+      .project-info { padding: 2rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-bar { gap: 2rem; padding: 1.5rem; }
+      .hero-name { font-size: clamp(4rem, 18vw, 8rem); }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links li:not(:last-child) { display: none; }
+      .hero-desc { display: none; }
+      .projects-header { flex-direction: column; }
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">*<span>B</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About me</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="cv.html" target="_blank">My CV</a></li>
+      <li><a href="#contact" class="nav-cta">Contact me</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-stripe"></div>
+    <p class="hero-eyebrow">UX Designer & Product Thinker</p>
+    <h1 class="hero-name">BARBARA</h1>
+    <p class="hero-subtitle">UX Design &nbsp;·&nbsp; Product Design &nbsp;·&nbsp; CRO</p>
+    <p class="hero-desc">I design experiences that solve real problems — and I have the numbers to prove it. £7M+ in projected revenue uplift and counting.</p>
+    <div class="hero-cta-group">
+      <a href="#projects" class="btn-primary">See my work</a>
+      <a href="#contact" class="btn-outline">Get in touch</a>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number">£7M+</div>
+      <div class="stat-label">Projected revenue uplift</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">CRO tests launched</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">+150%</div>
+      <div class="stat-label">Testing velocity increase</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Case studies</div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div id="projects">
+    <div class="projects-header fade-in">
+      <div>
+        <span class="section-tag">Selected work</span>
+        <h2 class="section-title">Projects that moved<br>the needle</h2>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1: CookEase -->
+      <a href="projects/cookease.html" class="project-card reverse fade-in">
+        <div class="project-visual" style="background:#f5f5f5; display:flex; align-items:flex-end; justify-content:center; gap:12px; padding:1.5rem 1rem 0;">
+          <img src="images/ce_discover_swipe.png" alt="CookEase Discover" style="width:44%; max-height:100%; object-fit:contain; display:block;">
+          <img src="images/ce_meal_plan.png" alt="CookEase Meal Plan" style="width:44%; max-height:100%; object-fit:contain; display:block; margin-bottom:20px;">
+        </div>
+        <div class="project-info">
+          <span class="project-number">01</span>
+          <h3 class="project-title">CookEase</h3>
+          <div class="project-tags">
+            <span class="tag">UX Research</span>
+            <span class="tag">Mobile App</span>
+            <span class="tag">Product Design</span>
+          </div>
+          <p class="project-desc">A meal planning app designed from scratch for students — covering everything from competitor analysis and user flows to full hi-fi prototypes. Inspiration → planning → cooking, all in one place.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-val">End-to-end</div>
+              <div class="metric-label">Research to prototype</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">5</div>
+              <div class="metric-label">Core user flows designed</div>
+            </div>
+          </div>
+          <span class="project-link">
+            Read case study
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Project 2: Multibuy Tracker -->
+      <a href="projects/multibuy.html" class="project-card fade-in">
+        <div class="project-visual">
+          <img src="images/8b3903_a38dc22461d04a1b8b48b2b40b302ccc_mv2.jpg" alt="Multibuy Tracker Redesign">
+        </div>
+        <div class="project-info">
+          <span class="project-number">02</span>
+          <h3 class="project-title">Multibuy Tracker Redesign</h3>
+          <div class="project-tags">
+            <span class="tag">CRO</span>
+            <span class="tag">E-Commerce</span>
+            <span class="tag">Behavioural UX</span>
+            <span class="tag">UI Design</span>
+          </div>
+          <p class="project-desc">Charles Tyrwhitt's multibuy offer had been live for years — but it wasn't converting. I redesigned the tracker and messaging to make the offer visible, clear, and motivating.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-val">+11.5%</div>
+              <div class="metric-label">Multibuy conversion</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">£812K</div>
+              <div class="metric-label">Annual revenue uplift</div>
+            </div>
+          </div>
+          <span class="project-link">
+            Read case study
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Project 3: PDP Redesign -->
+      <a href="projects/pdp.html" class="project-card reverse fade-in">
+        <div class="project-visual">
+          <img src="images/8b3903_5de415c96c0c4e4a9ef18c03babbd447_mv2.jpg" alt="PDP Redesign">
+        </div>
+        <div class="project-info">
+          <span class="project-number">03</span>
+          <h3 class="project-title">PDP Redesign</h3>
+          <div class="project-tags">
+            <span class="tag">UX Research</span>
+            <span class="tag">A/B Testing</span>
+            <span class="tag">Conversion</span>
+            <span class="tag">Mobile</span>
+          </div>
+          <p class="project-desc">A year-long overhaul of Charles Tyrwhitt's core revenue page. Two rounds of usability testing, two phases of A/B testing, and one very satisfying result.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-val">£9.8K</div>
+              <div class="metric-label">Uplift in just 2 weeks</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">3.5×</div>
+              <div class="metric-label">More ATB visibility mobile</div>
+            </div>
+          </div>
+          <span class="project-link">
+            Read case study
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Project 4: Design System -->
+      <a href="projects/design-system.html" class="project-card fade-in">
+        <div class="project-visual">
+          <img src="images/8b3903_1acc072d0c4043669eee23b242ef6753_mv2.jpg" alt="Design System">
+        </div>
+        <div class="project-info">
+          <span class="project-number">04</span>
+          <h3 class="project-title">Design System</h3>
+          <div class="project-tags">
+            <span class="tag">Systems Design</span>
+            <span class="tag">Figma</span>
+            <span class="tag">Design Ops</span>
+          </div>
+          <p class="project-desc">Built Charles Tyrwhitt's first design system from scratch — a scalable Figma library that turned consistency into velocity and made testing faster for the whole team.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-val">+150%</div>
+              <div class="metric-label">Testing volume increase</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">50+</div>
+              <div class="metric-label">CRO tests in H1 2025</div>
+            </div>
+          </div>
+          <span class="project-link">
+            Read case study
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+
+      
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-text fade-in">
+        <span class="section-tag">About me</span>
+        <h2 class="section-title">Clarity, impact,<br>iteration.</h2>
+        <div class="about-body">
+          <p>I'm Barbara — a UX and Product Designer who loves solving problems that actually matter. I'm driven by clarity, impact, and the kind of iteration that turns a good idea into a proven one.</p>
+          <p>My background sits at the intersection of design, data, and human behaviour. Whether I'm running usability tests in-store, digging into Contentsquare heatmaps, or building out a design system, I'm always asking the same question: what's actually going on for the user here?</p>
+          <p>I'm trilingual (English, Spanish, Portuguese), detail-obsessed, and genuinely excited by the challenge of making complex things feel simple.</p>
+        </div>
+        <div class="about-skills">
+          <div class="about-skills-label">What I work with</div>
+          <div class="skills-list">
+            <span class="skill-chip">Figma</span>
+            <span class="skill-chip">User Research</span>
+            <span class="skill-chip">Usability Testing</span>
+            <span class="skill-chip">A/B Testing</span>
+            <span class="skill-chip">Contentsquare</span>
+            <span class="skill-chip">Design Systems</span>
+            <span class="skill-chip">Prototyping</span>
+            <span class="skill-chip">CRO</span>
+            <span class="skill-chip">Journey Mapping</span>
+            <span class="skill-chip">Jira</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-right fade-in">
+        <div class="exp-block">
+          <div class="exp-company">Charles Tyrwhitt</div>
+          <div class="exp-role">UX/UI Designer — CRO</div>
+          <div class="exp-date">July 2024 – Present</div>
+          <div class="exp-detail">Led end-to-end design for the CRO team. Contributed to £7M+ in projected revenue uplift across every experiment. Built the company's first design system, enabling 50+ tests in six months.</div>
+        </div>
+        <div class="exp-block">
+          <div class="exp-company">WineFi</div>
+          <div class="exp-role">UI Designer (Freelance)</div>
+          <div class="exp-date">May – June 2024</div>
+          <div class="exp-detail">Led the UI redesign of a fine wine investment platform. Delivered desktop and mobile across 2 months with a full cohesive design system.</div>
+        </div>
+        <div class="exp-block">
+          <div class="exp-company">General Assembly</div>
+          <div class="exp-role">Certificate — UX Design</div>
+          <div class="exp-date">Nov 2023 – Mar 2024</div>
+          <div class="exp-detail">Intensive UX design programme covering research, prototyping, usability testing, and end-to-end product design.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials">
+    <div class="testimonials-inner">
+      <span class="testimonials-qqmark">"</span>
+      <div class="testimonial-slide active">
+        <p class="testimonial-text">"Barbara must have been a designer in another life. She has such an intuitive sense for human-centered work, it feels like she must have been doing this for years. Barbara has a strong instinct for gaining a deep understanding of the human needs involved, and a natural ability to distill complex work and decisions into a narrative that is clear, compelling and evidence-based."</p>
+        <div class="testimonial-author">Javi Calderon, GA Lead Instructor</div>
+      </div>
+      <div class="testimonial-slide">
+        <p class="testimonial-text">"I cannot recommend Barbara highly enough. Her UX expertise, diligent approach and leadership made her an invaluable member of our team. Her work directly contributed to positioning EduCompass for successful adoption and impact within schools. Barbara is a superb UX professional, project leader, and would be an asset to any team."</p>
+        <div class="testimonial-author">Scott Neil, EduCompass Founder</div>
+      </div>
+      <div class="testimonial-slide">
+        <p class="testimonial-text">"Barbara was absolutely fantastic to work with. She had plenty of amazing ideas and quickly assimilated them into the goals and ideals of the company. She produced very high quality work and was very professional during the entire process. I would absolutely work with her again in the future for any projects I have."</p>
+        <div class="testimonial-author">Allen Dempster</div>
+      </div>
+      <div class="testimonial-nav">
+        <button class="testimonial-arrow" onclick="changeTestimonial(-1)">‹</button>
+        <div class="testimonial-dots">
+          <button class="testimonial-dot active" onclick="goToTestimonial(0)"></button>
+          <button class="testimonial-dot" onclick="goToTestimonial(1)"></button>
+          <button class="testimonial-dot" onclick="goToTestimonial(2)"></button>
+        </div>
+        <button class="testimonial-arrow" onclick="changeTestimonial(1)">›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner fade-in">
+      <span class="section-tag">Let's talk</span>
+      <h2 class="section-title">Got a problem worth solving?</h2>
+      <p class="contact-desc">I'm open to new opportunities, freelance projects, and interesting conversations. If you think we'd be a good fit — I'd love to hear from you.</p>
+      <a href="mailto:bamelidaniel@gmail.com" class="contact-email">bamelidaniel@gmail.com</a>
+      <div class="contact-links">
+        <a href="https://linkedin.com" target="_blank" class="contact-link">LinkedIn →</a>
+        <a href="/cv.pdf" target="_blank" class="contact-link">Download CV →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">*B</span>
+    <span class="footer-copy">© 2026 Barbara Ameli &nbsp;·&nbsp; barbaraameliux.com</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Testimonials
+    let currentTestimonial = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.testimonial-dot');
+
+    function goToTestimonial(n) {
+      slides[currentTestimonial].classList.remove('active');
+      dots[currentTestimonial].classList.remove('active');
+      currentTestimonial = (n + slides.length) % slides.length;
+      slides[currentTestimonial].classList.add('active');
+      dots[currentTestimonial].classList.add('active');
+    }
+    function changeTestimonial(dir) { goToTestimonial(currentTestimonial + dir); }
+
+    // Auto-advance every 6s
+    setInterval(() => changeTestimonial(1), 6000);
+  </script>
+
+</body>
+</html>

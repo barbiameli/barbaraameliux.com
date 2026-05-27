@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV — Barbara Ameli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#0d1117;--pink:#f2b8b8;--pink-light:#fce8e8;--pink-mid:#e8a5a5;--cream:#faf7f4;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+    body{font-family:var(--sans);background:var(--pink-light);min-height:100vh;padding:5rem 2rem 3rem}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(250,247,244,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(242,184,184,.3)}
+    .nav-logo{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--navy);text-decoration:none}
+    .nav-logo span{color:var(--pink-mid)}
+    .nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+    .nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--pink-mid)}
+    .nav-cta{background:var(--navy)!important;color:#fff!important;padding:.6rem 1.4rem;border-radius:2px}
+
+    .cv-wrap{max-width:960px;margin:0 auto;background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.1)}
+
+    /* CV HEADER */
+    .cv-header{padding:3rem 3.5rem 2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;border-bottom:1px solid #f3f4f6}
+    .cv-name{font-family:var(--serif);font-size:2.8rem;font-weight:700;color:#374151;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+    .cv-role{font-size:1.1rem;color:#9ca3af;margin-top:.5rem;font-weight:300}
+    .cv-photo{width:130px;height:130px;border-radius:4px;object-fit:cover;flex-shrink:0}
+    .cv-contact{display:flex;flex-direction:column;gap:.5rem;margin-top:1.5rem}
+    .cv-contact-item{display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:#6b7280;font-weight:300}
+    .cv-contact-icon{font-size:1rem}
+
+    /* CV BODY */
+    .cv-body{display:grid;grid-template-columns:1fr 1.6fr;gap:0}
+    .cv-left{padding:2.5rem 2rem 2.5rem 3.5rem;border-right:1px solid #f3f4f6}
+    .cv-right{padding:2.5rem 3.5rem 2.5rem 2.5rem}
+
+    .cv-section{margin-bottom:2.5rem}
+    .cv-section-title{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:#9ca3af;margin-bottom:1.2rem}
+    .cv-entry{margin-bottom:1.5rem;position:relative;padding-left:1.2rem}
+    .cv-entry::before{content:'—';position:absolute;left:0;top:0;color:var(--pink-mid);font-size:.8rem}
+    .cv-date{font-size:.75rem;color:#9ca3af;margin-bottom:.25rem;letter-spacing:.05em}
+    .cv-entry-title{font-size:.95rem;font-weight:500;color:#374151;line-height:1.3}
+    .cv-entry-sub{font-size:.8rem;color:#9ca3af;margin-top:.15rem}
+    .cv-entry-body{font-size:.82rem;color:#6b7280;font-weight:300;line-height:1.7;margin-top:.4rem}
+    .cv-entry-bullets{list-style:none;padding:0;margin-top:.4rem}
+    .cv-entry-bullets li{font-size:.82rem;color:#6b7280;font-weight:300;line-height:1.7;padding-left:1rem;position:relative}
+    .cv-entry-bullets li::before{content:'•';position:absolute;left:0;color:var(--pink-mid)}
+    .cv-skill{font-size:.82rem;color:#6b7280;font-weight:300;padding:.3rem 0;border-bottom:1px solid #f9fafb;display:flex;align-items:center;gap:.5rem}
+    .cv-skill::before{content:'—';color:var(--pink-mid);font-size:.75rem;flex-shrink:0}
+    .cv-langs{display:flex;flex-direction:column;gap:.5rem}
+    .cv-lang{display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;font-weight:300;padding:.2rem 0}
+    .cv-lang-level{color:#9ca3af;font-size:.75rem}
+
+    footer{text-align:center;padding:2rem;font-size:.75rem;color:#9ca3af}
+    @media(max-width:700px){
+      nav{padding:1rem 1.5rem}.nav-links li:not(:last-child){display:none}
+      .cv-header{grid-template-columns:1fr}.cv-photo{display:none}
+      .cv-body{grid-template-columns:1fr}.cv-left{border-right:none;border-bottom:1px solid #f3f4f6;padding:2rem 1.5rem}
+      .cv-right{padding:2rem 1.5rem}.cv-header{padding:2rem 1.5rem}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">*<span>B</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About me</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="cv.html">My CV</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Contact me</a></li>
+  </ul>
+</nav>
+
+<div class="cv-wrap">
+  <div class="cv-header">
+    <div>
+      <div class="cv-name">Barbara Ameli</div>
+      <div class="cv-role">UX / Product Designer</div>
+      <div class="cv-contact">
+        <div class="cv-contact-item"><span class="cv-contact-icon">📞</span> +44 7826 095485</div>
+        <div class="cv-contact-item"><span class="cv-contact-icon">✉</span> bamelidaniel@gmail.com</div>
+        <div class="cv-contact-item"><span class="cv-contact-icon">📍</span> London, UK</div>
+      </div>
+    </div>
+    <img src="images/barbara_photo.jpg" alt="Barbara Ameli" class="cv-photo">
+  </div>
+
+  <div class="cv-body">
+    <div class="cv-left">
+
+      <div class="cv-section">
+        <div class="cv-section-title">Profile</div>
+        <p style="font-size:.85rem;color:#6b7280;font-weight:300;line-height:1.75">Driven by clarity, impact, and iteration, I design user experiences that solve real problems and scale with purpose. My approach combines systems thinking, strategic research, and hands-on design to create intuitive, high-performing products.</p>
+        <p style="font-size:.85rem;color:#6b7280;font-weight:300;line-height:1.75;margin-top:.75rem">With experience across CRO, design systems, and product optimisation, I work closely with cross-functional teams to deliver solutions that are not just usable — but measurable, consistent, and user-centred.</p>
+      </div>
+
+      <div class="cv-section">
+        <div class="cv-section-title">Education</div>
+        <div class="cv-entry">
+          <div class="cv-date">2023 – 2024</div>
+          <div class="cv-entry-title">Student UX Design Bootcamp | Remote</div>
+          <div class="cv-entry-sub">General Assembly</div>
+          <div class="cv-entry-body">Completed 480 hours of immersive UX design study, practice, and professional training. Delivered four end-to-end UX design projects within stringent deadlines, demonstrating strong time management, adaptability, and teamwork.</div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <div class="cv-section-title">Skills</div>
+        <div class="cv-skill">Figma</div>
+        <div class="cv-skill">Microsoft Office & Word</div>
+        <div class="cv-skill">ContentSquare</div>
+        <div class="cv-skill">Adobe Creative Suite</div>
+        <div class="cv-skill">Sketch</div>
+        <div class="cv-skill">Canva</div>
+        <div class="cv-skill">Python</div>
+        <div class="cv-skill">Tableau</div>
+        <div class="cv-skill">Jira</div>
+        <div class="cv-skill">Miro / FigJam</div>
+      </div>
+
+      <div class="cv-section">
+        <div class="cv-section-title">Languages</div>
+        <div class="cv-langs">
+          <div class="cv-lang"><span>English</span><span class="cv-lang-level">Fluent</span></div>
+          <div class="cv-lang"><span>Spanish</span><span class="cv-lang-level">Native</span></div>
+          <div class="cv-lang"><span>Portuguese</span><span class="cv-lang-level">Fluent</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="cv-right">
+
+      <div class="cv-section">
+        <div class="cv-section-title">Work Experience</div>
+
+        <div class="cv-entry">
+          <div class="cv-date">2024 / Present</div>
+          <div class="cv-entry-title">UX Designer</div>
+          <div class="cv-entry-sub">Charles Tyrwhitt</div>
+          <ul class="cv-entry-bullets">
+            <li>Lead end-to-end UX/UI design for the CRO team, delivering high-impact projects like the PDP redesign and multibuy tracker — which contributed over £822K in projected revenue uplift.</li>
+            <li>Created and implemented the company's first design system, enabling 50+ tests in six months and improving speed and consistency across the team.</li>
+            <li>Contributed to every CRO experiment to date, helping deliver over £7M in total projected revenue uplift.</li>
+            <li>Initiated and led Charles Tyrwhitt's first in-store usability testing program, pitching it to directors to secure store approval, then conducting 40+ moderated sessions with real customers to uncover friction across product discovery, sizing, and purchase flows.</li>
+          </ul>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-date">2024</div>
+          <div class="cv-entry-title">UX Designer</div>
+          <div class="cv-entry-sub">WineFi</div>
+          <ul class="cv-entry-bullets">
+            <li>Led the redesign of WineFi's investment website, improving clarity, trust, and usability for high-net-worth users across desktop and mobile.</li>
+            <li>Delivered a modular visual system tailored to the product's core user journeys, working end-to-end from concept to handoff.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Barbara Ameli</footer>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CookEase — Barbara Ameli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#0d1117;--pink:#f2b8b8;--pink-light:#fce8e8;--pink-mid:#e8a5a5;--cream:#faf7f4;--text:#0d1117;--muted:#6b7280;--ce-red:#c1292e;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);color:var(--text);background:#fff;overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(242,184,184,.3)}
+    .nav-logo{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--navy);text-decoration:none}
+    .nav-logo span{color:var(--pink-mid)}
+    .nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+    .nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--pink-mid)}
+    .nav-cta{background:var(--navy)!important;color:#fff!important;padding:.6rem 1.4rem;border-radius:2px}
+
+    /* HERO */
+    .hero-bg{background:#fff}
+    .hero-wrap{padding:8rem 5rem 5rem;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .back{display:inline-block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin-bottom:2rem;transition:color .2s}
+    .back:hover{color:var(--navy)}
+    .eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-mid);margin-bottom:1rem;display:block}
+    .cs-title{font-family:var(--serif);font-size:clamp(2.8rem,4vw,4.5rem);font-weight:700;color:var(--navy);line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
+    .cs-sub{font-size:1.05rem;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:2rem}
+    .tags{display:flex;flex-wrap:wrap;gap:.5rem}
+    .tag{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:.35rem .8rem;border-radius:2px;background:var(--pink-light);color:#7a3838}
+
+    /* PHONE IMAGES — already include the phone frame */
+    .phones-hero{display:flex;justify-content:center;gap:20px;align-items:flex-end}
+    .phone-img-wrap{flex-shrink:0}
+    .phone-img-wrap img{display:block;width:100%;height:auto;object-fit:contain}
+    /* hero: 3 phones, middle taller */
+    .phones-hero .phone-img-wrap{width:160px}
+    .phones-hero .phone-img-wrap.featured{width:190px;margin-bottom:20px}
+
+    /* section phone rows */
+    .phones-row{display:flex;justify-content:center;gap:20px;align-items:flex-end;padding:3rem 1rem;flex-wrap:wrap}
+    .phones-row .phone-img-wrap{width:200px}
+    .phones-row .phone-img-wrap.sm{width:170px}
+    .phone-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:.6rem;font-weight:500}
+
+    /* RESULTS */
+    .results{background:var(--navy);padding:5rem 3rem;text-align:center}
+    .results h2{font-family:var(--serif);font-size:1.8rem;color:#fff;margin-bottom:3.5rem;font-weight:400;letter-spacing:.05em}
+    .results-row{display:flex;justify-content:center;gap:5rem;flex-wrap:wrap;max-width:900px;margin:0 auto}
+    .r-num{font-family:var(--serif);font-size:clamp(2.5rem,4vw,3.8rem);font-weight:700;color:#fff;line-height:1}
+    .r-label{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:.75rem;font-weight:300;line-height:1.5;max-width:150px;margin-left:auto;margin-right:auto}
+
+    /* QUOTE */
+    .quote-wrap{padding:4rem 3rem;display:flex;align-items:center;justify-content:center;gap:2.5rem;max-width:860px;margin:0 auto;flex-wrap:wrap;border-bottom:1px solid rgba(0,0,0,.06)}
+    .q-avatar{width:90px;height:90px;border-radius:50%;overflow:hidden;flex-shrink:0}
+    .q-avatar img{width:100%;height:100%;object-fit:cover}
+    .q-text{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--navy);line-height:1.9;max-width:580px}
+
+    /* BODY */
+    .body{max-width:820px;margin:0 auto;padding:4rem 3rem}
+    .section{margin-bottom:4rem}
+    .section h2{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:1.5rem;letter-spacing:-.01em}
+    .section p{font-size:1rem;line-height:1.85;color:#374151;font-weight:300;margin-bottom:1rem}
+    .section ul{list-style:none;padding:0}
+    .section ul li{font-size:1rem;line-height:1.8;color:#374151;font-weight:300;padding:.4rem 0 .4rem 1.5rem;position:relative}
+    .section ul li::before{content:'—';position:absolute;left:0;color:var(--pink-mid)}
+    .highlight{background:#fef9f0;border-left:3px solid var(--ce-red);padding:1rem 1.5rem;border-radius:0 4px 4px 0;margin:1.5rem 0;font-size:.95rem;color:#7a1a1a;line-height:1.7}
+
+    /* EXPANDABLE */
+    .expand-block{border:1px solid rgba(0,0,0,.07);border-radius:8px;margin-bottom:1rem;overflow:hidden;transition:box-shadow .2s}
+    .expand-block:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
+    .expand-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;user-select:none;background:#fff;transition:background .15s}
+    .expand-header:hover{background:#fafafa}
+    .expand-left{display:flex;align-items:center;gap:1rem}
+    .expand-badge{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:.25rem .7rem;border-radius:2px;white-space:nowrap}
+    .b-crit{background:#fef2f2;color:var(--ce-red)}
+    .b-high{background:#fff7ed;color:#c2410c}
+    .b-res{background:var(--pink-light);color:#7a3838}
+    .b-des{background:#eff6ff;color:#1e40af}
+    .b-flow{background:#f0fdf4;color:#166534}
+    .b-ana{background:#f5f3ff;color:#5b21b6}
+    .expand-title{font-size:.98rem;font-weight:500;color:var(--navy)}
+    .expand-summary{font-size:.83rem;color:var(--muted);font-weight:300;margin-top:.1rem}
+    .expand-chevron{font-size:.9rem;color:var(--muted);transition:transform .25s;flex-shrink:0;margin-left:1rem}
+    .expand-block.open .expand-chevron{transform:rotate(180deg)}
+    .expand-body{display:none;padding:1.25rem 1.5rem;border-top:1px solid rgba(0,0,0,.05)}
+    .expand-block.open .expand-body{display:block}
+    .expand-body p{font-size:.92rem;line-height:1.8;color:#374151;font-weight:300;margin-bottom:.75rem}
+    .expand-body ul{list-style:none;padding:0}
+    .expand-body ul li{font-size:.92rem;line-height:1.75;color:#374151;font-weight:300;padding:.3rem 0 .3rem 1.2rem;position:relative}
+    .expand-body ul li::before{content:'—';position:absolute;left:0;color:var(--pink-mid);font-size:.8rem}
+
+    /* COMP GRID */
+    .comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+    .comp-card{background:#f9fafb;border-radius:6px;padding:1.2rem;border:1px solid rgba(0,0,0,.06)}
+    .comp-name{font-size:.92rem;font-weight:500;color:var(--navy);margin-bottom:.15rem}
+    .comp-type{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+    .comp-row{font-size:.8rem;color:#374151;font-weight:300;line-height:1.6;padding-left:.85rem;position:relative;margin-bottom:.25rem}
+    .comp-row.g::before{content:'✓';position:absolute;left:0;color:#4a7c59;font-weight:600}
+    .comp-row.b::before{content:'×';position:absolute;left:0;color:var(--ce-red);font-weight:600}
+    .gap-banner{background:var(--navy);border-radius:8px;padding:1.5rem 2rem;margin:1rem 0;text-align:center}
+    .gap-banner p{color:rgba(255,255,255,.7);font-size:.92rem;line-height:1.7;font-weight:300}
+    .gap-banner strong{color:#fff;font-weight:500}
+
+    /* WIDE SECTION */
+    .wide{max-width:1100px;margin:0 auto;padding:0 3rem}
+    .wide-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-align:center;display:block;margin-bottom:0}
+
+    /* FIGMA */
+    .figma-section{background:var(--navy);padding:4rem 3rem;text-align:center}
+    .figma-section h2{font-family:var(--serif);font-size:1.8rem;color:#fff;margin-bottom:.75rem;font-weight:400}
+    .figma-section p{font-size:.9rem;color:rgba(255,255,255,.5);margin-bottom:2rem;font-weight:300}
+    .figma-wrap{max-width:900px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.08)}
+    .figma-wrap iframe{display:block;width:100%;height:600px;border:none}
+    .figma-link{display:inline-block;margin-top:1.5rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:.1rem;transition:color .2s}
+    .figma-link:hover{color:#fff}
+
+    /* SEE MORE */
+    .see-more{background:#f9fafb;padding:5rem 3rem;text-align:center;border-top:1px solid rgba(0,0,0,.06)}
+    .see-more h2{font-family:var(--serif);font-size:2rem;margin-bottom:3rem;color:var(--navy);font-weight:400}
+    .sm-grid{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;max-width:800px;margin:0 auto}
+    .sm-card{text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:1rem;transition:transform .2s}
+    .sm-card:hover{transform:translateY(-4px)}
+    .sm-thumb{width:160px;height:120px;border-radius:50%;overflow:hidden}
+    .sm-thumb img{width:100%;height:100%;object-fit:cover}
+    .sm-name{font-family:var(--serif);font-size:1rem;color:var(--navy);font-weight:400}
+
+    footer{background:var(--navy);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .f-logo{font-family:var(--serif);font-size:1.1rem;color:rgba(255,255,255,.5)}
+    .f-copy{font-size:.75rem;color:rgba(255,255,255,.3)}
+    .fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:900px){
+      nav{padding:1rem 1.5rem}.nav-links li:not(:last-child){display:none}
+      .hero-wrap{grid-template-columns:1fr;padding:6rem 1.5rem 3rem}
+      .body{padding:3rem 1.5rem}.wide{padding:0 1.5rem}
+      .comp-grid{grid-template-columns:1fr}
+      .phones-row .phone-img-wrap{width:140px}
+      .phones-hero .phone-img-wrap{width:120px}.phones-hero .phone-img-wrap.featured{width:145px}
+      .figma-wrap iframe{height:400px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">*<span>B</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About me</a></li>
+    <li><a href="../index.html#projects">Projects</a></li>
+    <li><a href="../cv.html">My CV</a></li>
+    <li><a href="../index.html#contact" class="nav-cta">Contact me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero-bg" style="border-top:6px solid;border-image:linear-gradient(90deg,var(--pink-light),var(--pink),var(--pink-mid)) 1">
+  <div class="hero-wrap">
+    <div class="fade-in">
+      <a href="../index.html" class="back">← Back to projects</a>
+      <span class="eyebrow">UX Research · Mobile App Design</span>
+      <h1 class="cs-title">CookEase</h1>
+      <p class="cs-sub">A meal planning app designed from scratch for students — from competitor research and behavioural analysis all the way to a full hi-fi prototype.</p>
+      <div class="tags">
+        <span class="tag">UX Research</span>
+        <span class="tag">Mobile App</span>
+        <span class="tag">Product Design</span>
+        <span class="tag">Usability Audit</span>
+        <span class="tag">User Flows</span>
+      </div>
+    </div>
+    <div class="fade-in phones-hero">
+      <div class="phone-img-wrap">
+        <img src="../images/ce_discover_swipe.png" alt="CookEase Discover screen">
+        <div class="phone-label">Discover</div>
+      </div>
+      <div class="phone-img-wrap featured">
+        <img src="../images/ce_meal_plan.png" alt="CookEase Meal Plan screen">
+        <div class="phone-label">Meal Plan</div>
+      </div>
+      <div class="phone-img-wrap">
+        <img src="../images/ce_groceries.png" alt="CookEase Groceries screen">
+        <div class="phone-label">Groceries</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="results">
+  <h2>Project overview</h2>
+  <div class="results-row">
+    <div class="fade-in"><div class="r-num">End-to-end</div><div class="r-label">Research through to hi-fi prototype</div></div>
+    <div class="fade-in"><div class="r-num">25</div><div class="r-label">Usability issues identified and resolved</div></div>
+    <div class="fade-in"><div class="r-num">5</div><div class="r-label">Core user flows designed</div></div>
+    <div class="fade-in"><div class="r-num">4</div><div class="r-label">Competitors analysed</div></div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-wrap fade-in">
+  <div class="q-avatar"><img src="../images/barbara_photo.jpg" alt="Barbara Ameli"></div>
+  <p class="q-text">"This project taught me how much research shapes great product decisions — every design choice came directly from something a real user said, did, or struggled with."</p>
+</div>
+
+<div class="body">
+
+  <div class="section fade-in">
+    <h2>Executive Summary</h2>
+    <p>CookEase is a meal planning app designed for students who want to cook more but hit real, everyday barriers: time pressure, limited ingredients, low confidence, and decision fatigue.</p>
+    <p>This project was built from the ground up — starting with user research into Gen Z food behaviour and student cooking habits, competitive analysis across four products, and a heuristic audit surfacing 25 usability issues. All of that fed directly into five end-to-end user flows and a full hi-fi prototype.</p>
+    <div class="highlight">The core insight: existing tools solve only one part of the journey. CookEase connects inspiration → planning → cooking in a single student-friendly experience.</div>
+  </div>
+
+  <div class="section fade-in">
+    <h2>The Challenge</h2>
+    <p>Students consistently want to cook more — but don't. The research showed the barriers aren't about interest; they're about friction. Time, confidence, and decision effort are the real blockers.</p>
+    <p>Cooking confidence is the single strongest predictor of how often students cook. A well-designed tool has a real shot at changing behaviour — not just organising recipes. That was the brief.</p>
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left">
+          <span class="expand-badge b-res">Research findings</span>
+          <div><div class="expand-title">Key insights from Gen Z behaviour research</div><div class="expand-summary">What the data told us about students and cooking</div></div>
+        </div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <ul>
+          <li>Cooking confidence is the single strongest predictor of cooking frequency — more important than time or equipment</li>
+          <li>Roughly 30–40% of students experience food insecurity, making budget-aware design essential not optional</li>
+          <li>Gen Z frames food as experience and self-expression — tools need to feel motivating, not instructional</li>
+          <li>The biggest daily barrier is decision effort: "what should I cook tonight?" is genuinely exhausting without support</li>
+          <li>Students cook more when they can see visible outcomes — confidence built, money saved, meals made</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade-in">
+    <h2>Competitor Analysis</h2>
+    <p>I analysed four products across direct and indirect competition — what each one does well, where it falls short, and what that means for CookEase.</p>
+    <div class="expand-block open">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left">
+          <span class="expand-badge b-ana">Analysis</span>
+          <div><div class="expand-title">Four competitors, one market gap</div><div class="expand-summary">Mealime, ReciMe, HelloFresh, DoorDash</div></div>
+        </div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <div class="comp-grid">
+          <div class="comp-card"><div class="comp-name">Mealime</div><div class="comp-type">Direct</div><div class="comp-row g">Great automation — instant planning, auto grocery lists</div><div class="comp-row g">Hands-free cooking mode with gesture control</div><div class="comp-row b">No calendar or long-term planning</div><div class="comp-row b">Creates dependency, doesn't build confidence</div></div>
+          <div class="comp-card"><div class="comp-name">ReciMe</div><div class="comp-type">Direct</div><div class="comp-row g">Best-in-class for importing social media recipes</div><div class="comp-row g">Demo-led onboarding shows value immediately</div><div class="comp-row b">No built-in recipes — assumes you know what you want</div><div class="comp-row b">Doesn't solve "what should I eat?" at all</div></div>
+          <div class="comp-card"><div class="comp-name">HelloFresh</div><div class="comp-type">Indirect</div><div class="comp-row g">Removes planning friction entirely</div><div class="comp-row g">Beautiful recipe cards, step-by-step instructions</div><div class="comp-row b">Expensive and inflexible for students</div><div class="comp-row b">Teaches reliance, not cooking skills</div></div>
+          <div class="comp-card"><div class="comp-name">DoorDash</div><div class="comp-type">Indirect</div><div class="comp-row g">Maximum convenience, familiar UX patterns</div><div class="comp-row b">Expensive and unsustainable for students</div><div class="comp-row b">Replaces cooking entirely — not a solution</div></div>
+        </div>
+        <div class="gap-banner"><p><strong>The market gap:</strong> every existing tool solves one part of the journey. None connect <strong>inspiration → planning → cooking</strong> in a single beginner-friendly experience built for students.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade-in">
+    <h2>Discovery — UX Audit</h2>
+    <p>Full heuristic audit of the CookEase prototype using Nielsen's 10 heuristics, covering onboarding, meal planning, recipe browsing, shopping, and profile. 25 issues identified. Here are the most critical.</p>
+
+    <div class="expand-block open">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-crit">Critical</span><div><div class="expand-title">Calendar too small to use on mobile</div><div class="expand-summary">High mis-tap risk, fails accessibility requirements</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <p>The calendar grid was too dense for reliable touch interaction — users risked selecting the wrong date or meal on every tap. It also failed minimum touch target sizes.</p>
+        <p><strong>Fix:</strong> Daily view showing "Your meals today" (breakfast, lunch, dinner) as the default, with a horizontal carousel for weekly — larger targets, simpler mental model.</p>
+      </div>
+    </div>
+
+    <div class="expand-block open">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-crit">Critical</span><div><div class="expand-title">Store selector with no clear purpose</div><div class="expand-summary">Users couldn't understand what selecting a store actually did</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <p>The shopping area had a store selector at the top with no explanation. Can you order here? See deals? The value was invisible.</p>
+        <p><strong>Fix:</strong> Add clear helper text — "Select your store to see ingredient availability and current prices." Define the purpose before asking for input.</p>
+      </div>
+    </div>
+
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-high">High</span><div><div class="expand-title">Browse by cuisine doesn't fit students</div><div class="expand-summary">Students think in constraints, not culinary traditions</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <p>Primary discovery categories were organised by cuisine type, which doesn't match how students choose what to cook. They ask "what's quick?" or "what's cheap?" — not "what's Italian?"</p>
+        <p><strong>Fix:</strong> Replace primary categories with "Time Savers", "Budget Meals", "Trending", "Few Ingredients". Cuisine stays as a secondary filter.</p>
+      </div>
+    </div>
+
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-high">High</span><div><div class="expand-title">Confusing "Add to Plan" flow</div><div class="expand-summary">CTA disappeared off-screen, sequence was unclear</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <p>The popup asked for date then time-of-day in a confusing sequence, and the "Select" button was pushed below the viewport — appearing broken to users.</p>
+        <p><strong>Fix:</strong> CTA always visible in the modal, relabelled to "Save" for clarity. Calendar pattern consistent with the rest of the app.</p>
+      </div>
+    </div>
+
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-high">High</span><div><div class="expand-title">Allergy selection overwhelming</div><div class="expand-summary">Full allergen list is too long and creates drop-off</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <p><strong>Fix:</strong> Quick-select chips for the 8 most common allergies (nuts, dairy, gluten, shellfish, eggs, soy, sesame, fish) with a search field for everything else.</p>
+      </div>
+    </div>
+
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-high">High</span><div><div class="expand-title">Disorganised profile structure</div><div class="expand-summary">Settings arranged by system architecture, not user goals</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <p><strong>Fix:</strong> Reorganised into three groups: My Account (login, security), My History (lists, meal plans), My Preferences (dietary, shopping, stores).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade-in">
+    <h2>User Flow Design</h2>
+    <p>Five core flows designed to cover every main journey — each informed directly by the audit findings and the research.</p>
+
+    <div class="expand-block open">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-flow">Flow 1</span><div><div class="expand-title">Discover</div><div class="expand-summary">Dual discovery — swipe and browse in one viewport</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <p>Two discovery modes visible at the same time: Tinder-style swipe cards at the top for passive browsing, Netflix-style category rows below for intentional searching. The algorithm learns from swipes over time.</p>
+        <ul>
+          <li>Swipe right → saves to Favourites automatically, no extra steps</li>
+          <li>Categories match student pain points: Time Savers, Budget Meals, Trending, Few Ingredients</li>
+          <li>Search with filters for dietary preferences, cooking time, skill level</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-flow">Flow 2</span><div><div class="expand-title">Meal Plan</div><div class="expand-summary">Daily-first view with weekly toggle — direct response to audit</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <ul>
+          <li>Default home shows "Today's meals" — breakfast, lunch, dinner cards</li>
+          <li>Weekly toggle uses a horizontal carousel, not a grid</li>
+          <li>Adding a recipe optionally prompts: "Add ingredients to grocery list?"</li>
+          <li>Plan up to 4 weeks ahead, with weekly meal prep notifications</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-flow">Flow 3</span><div><div class="expand-title">Favourites</div><div class="expand-summary">Auto-populated, zero extra steps</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <ul>
+          <li>Swipe right in Discover → saved automatically</li>
+          <li>Manual upload or URL import from any recipe website</li>
+          <li>"+" button adds to meal plan without navigating away</li>
+          <li>Renamed from "Recipes" to "Favourites" — aligns with industry standards</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-flow">Flow 4</span><div><div class="expand-title">Groceries</div><div class="expand-summary">Auto-generated from meal plan — biggest friction point removed</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <ul>
+          <li>Automatically compiled from the weekly meal plan — no manual transfer</li>
+          <li>Duplicates consolidated, quantities adjusted for servings</li>
+          <li>Organised by supermarket aisle for faster in-store shopping</li>
+          <li>Paste-entire-list feature for online supermarket checkout</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="expand-block">
+      <div class="expand-header" onclick="toggle(this)">
+        <div class="expand-left"><span class="expand-badge b-flow">Flow 5</span><div><div class="expand-title">Rewards</div><div class="expand-summary">Habit loops and tangible motivation</div></div></div>
+        <span class="expand-chevron">▾</span>
+      </div>
+      <div class="expand-body">
+        <ul>
+          <li>Points earned by cooking, rating, and uploading dish photos</li>
+          <li>Redeemable for kitchen utensils, gift cards, appliances in the Marketplace</li>
+          <li>Daily spin wheel adds a surprise element to keep engagement up</li>
+          <li>Cookie mascot adds personality — makes progress feel rewarding not clinical</li>
+          <li>Friends leaderboard drives friendly competition</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade-in">
+    <h2>Conclusion</h2>
+    <p>CookEase started as a design brief and became a genuine product built on real evidence. Every decision — from the discovery categories to the calendar layout to the onboarding flow — came directly from research findings, competitive gaps, or specific audit issues.</p>
+    <p>The project showed how a rigorous research foundation doesn't slow down design — it speeds it up. When you know exactly what's broken and why, you stop guessing and start solving.</p>
+  </div>
+
+</div>
+
+<!-- FIGMA PROTOTYPE -->
+<div class="figma-section">
+  <h2>Try the prototype</h2>
+  <p>Interact with the full hi-fi Figma prototype below — or open it in a new tab for full screen.</p>
+  <div class="figma-wrap">
+    <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F2dLlVcjjESCYVC0ZI7UKov%2FCookEase-Copy%3Fnode-id%3D1-1162%26p%3Df%26viewport%3D295%252C253%252C0.03%26t%3DBENCfK1JcneRDZgC-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26show-proto-sidebar%3D1%26starting-point-node-id%3D1%253A1162" allowfullscreen></iframe>
+  </div>
+  <a href="https://www.figma.com/proto/2dLlVcjjESCYVC0ZI7UKov/CookEase-Copy?node-id=1-1162&p=f&viewport=295%2C253%2C0.03&t=BENCfK1JcneRDZgC-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&show-proto-sidebar=1&starting-point-node-id=1%3A1162" target="_blank" class="figma-link">Open in Figma →</a>
+</div>
+
+<!-- KEY SCREENS -->
+<div style="background:#f9fafb;padding:4rem 0 2rem">
+  <div class="wide fade-in">
+    <span class="wide-label" style="margin-bottom:1rem">Discover &amp; Browse</span>
+    <div class="phones-row">
+      <div class="phone-img-wrap sm"><img src="../images/ce_discover_swipe.png" alt="Discover swipe"><div class="phone-label">Swipe cards</div></div>
+      <div class="phone-img-wrap sm"><img src="../images/ce_discover_browse.png" alt="Discover browse"><div class="phone-label">Category browse</div></div>
+      <div class="phone-img-wrap sm"><img src="../images/ce_discover_detail.png" alt="Recipe detail"><div class="phone-label">Recipe detail</div></div>
+    </div>
+  </div>
+  <div class="wide fade-in" style="margin-top:1rem">
+    <span class="wide-label" style="margin-bottom:1rem">Planning &amp; Shopping</span>
+    <div class="phones-row">
+      <div class="phone-img-wrap sm"><img src="../images/ce_meal_plan.png" alt="Meal Plan"><div class="phone-label">Meal Plan</div></div>
+      <div class="phone-img-wrap sm"><img src="../images/ce_groceries.png" alt="Groceries"><div class="phone-label">Groceries</div></div>
+      <div class="phone-img-wrap sm"><img src="../images/ce_store_picker.png" alt="Store picker"><div class="phone-label">Store picker</div></div>
+    </div>
+  </div>
+  <div class="wide fade-in" style="margin-top:1rem;padding-bottom:4rem">
+    <span class="wide-label" style="margin-bottom:1rem">Rewards</span>
+    <div class="phones-row">
+      <div class="phone-img-wrap sm"><img src="../images/ce_rewards_home.png" alt="Rewards home"><div class="phone-label">Rewards home</div></div>
+      <div class="phone-img-wrap sm"><img src="../images/ce_rewards_spin.png" alt="Daily spin"><div class="phone-label">Daily spin</div></div>
+      <div class="phone-img-wrap sm"><img src="../images/ce_rewards_market.png" alt="Marketplace"><div class="phone-label">Marketplace</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEE MORE -->
+<div class="see-more">
+  <h2>See More</h2>
+  <div class="sm-grid">
+    <a href="multibuy.html" class="sm-card"><div class="sm-thumb"><img src="../images/8b3903_a38dc22461d04a1b8b48b2b40b302ccc_mv2.jpg" alt="Multibuy"></div><span class="sm-name">Multibuy Tracker</span></a>
+    <a href="pdp.html" class="sm-card"><div class="sm-thumb"><img src="../images/8b3903_37e74c2ef0c94a1484b85077aaf4edfc_mv2.jpg" alt="PDP Redesign"></div><span class="sm-name">PDP Redesign</span></a>
+    <a href="design-system.html" class="sm-card"><div class="sm-thumb"><img src="../images/8b3903_1acc072d0c4043669eee23b242ef6753_mv2.jpg" alt="Design System"></div><span class="sm-name">Design System</span></a>
+  </div>
+</div>
+
+<footer>
+  <span class="f-logo">*B</span>
+  <span class="f-copy">© 2026 Barbara Ameli · barbaraameliux.com</span>
+</footer>
+
+<script>
+function toggle(header){header.closest('.expand-block').classList.toggle('open')}
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
